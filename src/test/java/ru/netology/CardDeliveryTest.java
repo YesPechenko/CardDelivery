@@ -1,5 +1,6 @@
 package ru.netology;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -14,6 +15,11 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
+
+    @BeforeAll
+    static void setUpAll()  {
+        System.setProperty("wedriver.chrome.driver", "artifacts/chromdriver.exe");
+    }
 
     @BeforeEach
     void setup () {
