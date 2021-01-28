@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -14,6 +15,12 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
+
+    String formateDate(int plusDays) {
+        LocalDate dateOfDelivery = LocalDate.now().plusDays(plusDays);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return  formatter.format(dateOfDelivery);
+    }
 
 
     @BeforeEach
@@ -27,16 +34,15 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("Иванов Василий");
         $("[data-test-id=phone] input").setValue("+79273332211");
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
-        $(byText("Успешно!")).waitUntil(visible, 12000);
+        $(byText("Успешно!")).shouldBe(visible, Duration.ofMillis(12000));
         $("[data-test-id=notification] .notification__content")
                 .shouldHave(exactText("Встреча успешно забронирована на "+date));
     }
@@ -47,9 +53,7 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("Иванов Василий");
@@ -67,16 +71,14 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("Иванов-Алекксаров Василий");
         $("[data-test-id=phone] input").setValue("+79273332211");
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
-        $(byText("Успешно!")).waitUntil(visible, 12000);
+        $(byText("Успешно!")).shouldBe(visible, Duration.ofMillis(12000));
         $("[data-test-id=notification] .notification__content")
                 .shouldHave(exactText("Встреча успешно забронирована на "+date));
 
@@ -88,16 +90,14 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("   Иванов Василий ");
         $("[data-test-id=phone] input").setValue("+79273332211");
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
-        $(byText("Успешно!")).waitUntil(visible, 12000);
+        $(byText("Успешно!")).shouldBe(visible, Duration.ofMillis(12000));
         $("[data-test-id=notification] .notification__content")
                 .shouldHave(exactText("Встреча успешно забронирована на "+date));
     }
@@ -108,9 +108,7 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("Ivanov Vasiliy");
@@ -128,9 +126,7 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("");
@@ -148,9 +144,7 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("Иванов Василий");
@@ -168,9 +162,7 @@ public class CardDeliveryTest {
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.CONTROL + "a");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
-        LocalDate today = LocalDate.now().plusDays(3);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String date = formatter.format(today);
+        String date = this.formateDate(3);
         $("[data-test-id='date'] input").setValue(date);
 
         $("[data-test-id=name] input").setValue("Иванов Василий");
